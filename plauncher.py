@@ -5,9 +5,12 @@ import importlib
 
 # Define your scripts here
 scripts = {
-    "Trivia Game": "trivia_game.py",
-    "Weather App": "weather_app.py",
-    "Multichoice Quiz": "multichoice_quiz.py"
+    "Gaming Trivia": "scripts/multigame.py",
+    "Weather": "scripts/weather.py",
+    "Roller": "scripts/roller.py",
+	"IcoMaker": "scripts/icomaker.py",
+	"ImgThf": "scripts/imgthf.py",
+	"Harmony": "scripts/harmony.py",
 }
 
 # Function to run the script using subprocess
@@ -31,7 +34,7 @@ def run_script_as_module(script_name):
 
 # GUI Setup
 root = tk.Tk()
-root.title("Python Script Launcher")
+root.title("Plauncher")
 root.geometry("400x300")
 root.configure(bg="#2E2E2E")
 
@@ -39,10 +42,10 @@ root.configure(bg="#2E2E2E")
 style = ttk.Style()
 style.theme_use("clam")
 style.configure("TButton", background="#444444", foreground="white", font=("Verdana", 10))
-style.configure("TLabel", background="#2E2E2E", foreground="white", font=("Verdana", 12))
+style.configure("TLabel", background="#2E2E2E", foreground="orange", font=("Verdana", 14))
 
 # Title Label
-title_label = ttk.Label(root, text="Python Script Launcher", style="TLabel")
+title_label = ttk.Label(root, text="Plauncher", style="TLabel")
 title_label.pack(pady=10)
 
 # Script Buttons
