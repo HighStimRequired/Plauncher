@@ -1,20 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
 import subprocess
-import os
+import importlib
 
-# Dynamically load scripts from the 'scripts' folder
-script_folder = "scripts"
-
-# Ensure the folder exists
-if not os.path.exists(script_folder):
-    os.makedirs(script_folder)
-
-# Scan the folder for .py files
+# Define your scripts here
 scripts = {
-    f.replace(".py", "").capitalize(): os.path.join(script_folder, f)
-    for f in os.listdir(script_folder)
-    if f.endswith(".py")
+    "Gaming Trivia": "scripts/multigame.py",
+    "Weather": "scripts/weather.py",
+    "Roller": "scripts/roller.py",
+	"IcoMaker": "scripts/icomaker.py",
+	"ImgThf": "scripts/imgthf.py",
+	"Harmony": "scripts/harmony.py",
 }
 
 # Function to run the script using subprocess
@@ -24,17 +20,22 @@ def run_script(script_name):
     except Exception as e:
         log_label["text"] = f"Error: {e}"
 
-# Function to calculate window size based on the number of scripts
-def calculate_window_size():
-    base_height = 100  # Base height for the window
-    button_height = 40  # Height per button
-    total_height = base_height + len(scripts) * button_height
-    return max(total_height, 300)  # Minimum height of 300px
+# Function to import and run the script as a module
+def run_script_as_module(script_name):
+    try:
+        module_name = scripts[script_name].replace(".py", "")
+        module = importlib.import_module(module_name)
+        if hasattr(module, "main"):
+            module.main()
+        else:
+            log_label["text"] = "Script does not have a main() function."
+    except Exception as e:
+        log_label["text"] = f"Error: {e}"
 
 # GUI Setup
 root = tk.Tk()
 root.title("Plauncher")
-root.geometry(f"400x{calculate_window_size()}")
+root.geometry("400x300")
 root.configure(bg="#2E2E2E")
 
 # Style
@@ -55,9 +56,6 @@ for script_name in scripts.keys():
 # Log Label
 log_label = ttk.Label(root, text="", style="TLabel", wraplength=380)
 log_label.pack(pady=10)
-
-# Adjust window size dynamically
-root.geometry(f"400x{calculate_window_size()}")
 
 # Run the GUI
 root.mainloop()
