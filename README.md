@@ -1,6 +1,6 @@
 # Plauncher - Python Script Launcher
 
-**Plauncher** is a simple, user-friendly application designed to organize and execute Python scripts via a graphical interface. It uses `Tkinter` to create a minimalist, dark-themed launcher with buttons corresponding to specific scripts. 
+**Plauncher** is a simple, user-friendly application designed to organize and execute Python scripts via a graphical interface. It uses `PyQt` to create a minimalist, dark-themed launcher with buttons corresponding to specific scripts. 
 
 ## Features
 - **Script Management**: Quickly execute pre-defined Python scripts with a single click.
